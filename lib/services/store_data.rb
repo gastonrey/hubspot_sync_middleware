@@ -1,4 +1,6 @@
-require 'json'
+# frozen_string_literal: true
+
+require "json"
 
 module Services
   module Store
@@ -12,9 +14,9 @@ module Services
 
     def parse_and_normalize(data)
       parsed = JSON.parse(data)
-      parsed.each { |element| 
-        element["email"].downcase! unless element["email"].nil? 
-      }
+      parsed.each do |element|
+        element["email"]&.downcase!
+      end
     end
   end
 end
