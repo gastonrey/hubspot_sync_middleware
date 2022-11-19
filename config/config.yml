@@ -1,0 +1,12 @@
+databases: &default
+  S3:
+    db1:
+      url: "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b0215346-89df-4f11-b643-b2dc3ca3de2b/Untitled.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221119%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221119T160905Z&X-Amz-Expires=86400&X-Amz-Signature=f927017f23082e66d84255e81fcc2a8206c2df860d42196e6b2a68d4d835da24&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22db1.json%22&x-id=GetObject"
+    db2:
+      url: "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/773cda30-659a-4d7a-85d2-bc0c1243226b/Untitled.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221119%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221119T160914Z&X-Amz-Expires=86400&X-Amz-Signature=cd405361c972b903520b63a219cc401c2f662a3a55e85b385681162a3841d375&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22db2.json%22&x-id=GetObject"
+
+development:
+  <<: *default
+
+test:
+  <<: *default
