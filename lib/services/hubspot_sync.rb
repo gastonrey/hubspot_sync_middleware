@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "byebug"
 
 module Services
@@ -5,7 +7,7 @@ module Services
     module_function
 
     ##
-    # @param data [Array]: 
+    # @param data [Array]:
     #     Contains the data storaged [db1_storage, db2_storage]
     #
     def start(data)
@@ -16,7 +18,7 @@ module Services
 
       # IMPORTANT: This is part of a POC, so lets store the output
       # in a file, so it can be inspected by the team before procceding with HS updates
-      File.open("./output/hubspot_filtered_data.json", 'w') do |f|
+      File.open("./output/hubspot_filtered_data.json", "w") do |f|
         f.write(merged_data.to_json)
       end
 
@@ -25,27 +27,27 @@ module Services
       # here we could connect to HS by going through our list
       # As mentioned in the README this step would be more helpful
       # If this merged data is sent as messages to a queue and then multiple
-      # consumers would take it, try to retrieve given contact from HS and 
+      # consumers would take it, try to retrieve given contact from HS and
       # replace the given contact with the one coming from our sync system
       merged_data
     end
 
     def remove_duplicates(db1, db2)
       db1.entities.map! do |entity|
-        unless entity.nil?
-          # byebug if db2[entity].last.nil?
-          index, result = db2[entity]
-          if result
-            index_db1, result_db_1 = db1[entity]
-            db2.entities.delete_at(index)
+        next if entity.nil?
 
-            result_db_1.to_h.merge(result.to_h) { |_, o, n| 
-              [o, n].flatten
+        # byebug if db2[entity].last.nil?
+        index, result = db2[entity]
+        next unless result
+
+        index_db1, result_db_1 = db1[entity]
+        db2.entities.delete_at(index)
+
+        result_db_1.to_h.merge(result.to_h) do |_, o, n|
+          [o, n].flatten
                 .uniq
                 .compact
-                .max 
-            }
-          end
+                .max
         end
       end
 

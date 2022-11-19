@@ -8,7 +8,7 @@ module Gateway
   def fetch_data_from_s3(url, callback)
     hydra = Typhoeus::Hydra.hydra
     request = Typhoeus::Request.new(url)
-    
+
     Log.logger.info("Retrieving data from S3 bucket")
 
     request.on_headers do |response|

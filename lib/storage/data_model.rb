@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Models
   ##
   # Defines a new Struct Entity like:

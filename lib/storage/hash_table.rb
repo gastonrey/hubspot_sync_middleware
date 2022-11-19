@@ -2,6 +2,7 @@
 
 module Storage
   class HashTableError < StandardError; end
+
   ##
   # Implements a HashTable to store the data structs.
   # This also implements a faster way to look up by key in the resulting table array
@@ -32,7 +33,7 @@ module Storage
 
     def <<(entry)
       raise Errors::EntityError if entry.email.nil?
-      
+
       index = bin_for(entry.email)
       @entities[index] = entry
     end
@@ -43,8 +44,8 @@ module Storage
     end
 
     def to_h
-      self.entities.compact
-        .map(&:to_h)
+      entities.compact
+              .map(&:to_h)
     end
   end
 end
