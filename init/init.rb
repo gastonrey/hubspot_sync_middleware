@@ -6,4 +6,5 @@ storages = producer.perform
 ##
 # This Service will produce an output file in ./output for testing purpose
 #
-Services::HubspotSync.start(storages)
+consumer = Consumers::HashTableStorages.new
+consumer.perform(storages)
