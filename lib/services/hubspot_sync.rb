@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "byebug"
-
 module Services
   module HubspotSync
     module_function
@@ -36,7 +34,6 @@ module Services
       db1.entities.map! do |entity|
         next if entity.nil?
 
-        # byebug if db2[entity].last.nil?
         index, result = db2[entity]
         next unless result
 
@@ -52,10 +49,6 @@ module Services
       end
 
       db1.to_h.append(db2.to_h).flatten!
-    end
-
-    def add_max_mrr(values)
-      values.map(&:to_i).max
     end
   end
 end
